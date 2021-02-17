@@ -1,0 +1,112 @@
+@import "import/variables";
+@import "import/dropzone";
+@import "import/ckeditor";
+
+.box {
+    display: none;
+    position: relative;
+    height: 100px;
+
+    &.has-advanced-upload {
+        display: block;
+        background-color: white;
+        outline: 2px dashed silver;
+        outline-offset: -10px;
+    }
+    &.is-dragover {
+        outline: 2px solid silver;
+    }
+    .label {
+        position: relative;
+        width: 100%;
+        top: calc(50% - 15px);
+        text-align: center;
+        font-size: 18px;
+        pointer-events: none;
+        color: silver
+    }
+}
+#header {
+    background: $officine-red;
+    color: white;
+}
+branding h1, #branding h1 a:link,
+#branding h1 a:visited {
+    color: white;
+}
+.module h2, .module caption, .inline-group h2 {
+    background: #757575;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+a:link, a:visited {
+    color: gray;
+}
+a:hover, a:active,
+div.breadcrumbs a:focus, div.breadcrumbs a:hover {
+    color: $officine-red;
+}
+.object-tools a:focus, .object-tools a:hover {
+    color: white;
+    background-color: $officine-red;
+}
+div.breadcrumbs {
+    background: #ffabab3b;
+    color: black;
+    border-bottom: solid 1px $officine-red;
+
+    a {
+        color: gray;
+    }
+}
+#nav-sidebar .current-model {
+    background: #8700003d;
+}
+#nav-sidebar .current-app .section:link, #nav-sidebar .current-app .section:visited {
+    color: $officine-red;
+}
+.vTextField, .vUUIDField {
+    width: calc(100% - 185px);
+}
+.inline-related {
+    .vTextField, .vUUIDField {
+        width: 100%;
+    }
+    select {
+        min-width: 50px;
+    }
+}
+
+.related-widget-wrapper-link img {
+    height: 20px;
+}
+select {
+    min-width: 300px;
+}
+.selector option {
+    padding: 5px 0;
+}
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background-color: gray;
+}
+.button.default, input[type=submit].default, .submit-row input.default {
+    background-color: $officine-red;
+}
+.button:active, input[type=submit]:active, input[type=button]:active, .button:focus, input[type=submit]:focus, input[type=button]:focus, .button:hover, input[type=submit]:hover, input[type=button]:hover {
+    background-color: silver;
+}
+.button.default:active, input[type=submit].default:active, .button.default:focus, input[type=submit].default:focus, .button.default:hover, input[type=submit].default:hover {
+    background-color: gray;
+}
+.custom_button {
+    display: block;
+    background: #ba2121;
+    border-radius: 4px;
+    padding: 15px;
+    height: 15px;
+    line-height: 2px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}

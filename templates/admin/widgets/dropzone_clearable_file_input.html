@@ -1,0 +1,25 @@
+{% load custom_admin_filters i18n %}
+{% if widget.is_initial %}
+    <div class="o-file-preview file-upload">
+        <div class="o-file-preview__content">
+            {% if widget.value|field_class_name == "ImageFieldFile" %}
+                <img src="{{ widget.value.url }}" class="image-preview o-file-preview__img j-remove_on_update" />
+{#            {% elif widget.value|field_class_name == "FieldFile" %}#}
+{#                <a href="{{ widget.value.url }}" class="btn btn-sm btn-primary j-remove_on_update" target="_blank">{% trans "Download" %}</a>#}
+            {% endif %}
+            <div class="o-file-preview__text">
+                <a class="text-white j-remove_on_update" href="{{ widget.value.url }}">{{ widget.value }}</a>
+                {% if not widget.required %}
+                    <div class="o-file-preview__delete">
+                        <div class="clearable-file-input btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-block btn-sm btn-outline-light active btn--labelled" for="{{ widget.checkbox_id }}">
+                                <input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}"> {{ widget.clear_checkbox_label }}
+                                <span class="btn__label"><i class="fa fa-trash"></i></span>
+                            </label>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endif %}

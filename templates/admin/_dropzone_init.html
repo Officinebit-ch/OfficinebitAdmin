@@ -1,0 +1,47 @@
+{% load static i18n %}
+
+<script src="{% static 'admin/plugins/dropzone-5.7.0/dist/min/dropzone.min.js' %}"></script>
+<script>
+    $(function(){
+        var isAdvancedUpload = function() {
+            var div = document.createElement('div');
+            return (('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window;
+        }();
+        if (isAdvancedUpload) {
+            $('.j-dropzone-box').each(function() {
+                $(this).addClass('has-advanced-upload');
+                var droppedFiles = false;
+                var original_label = $(this).find('.custom-dropzone__label').html();
+
+                $(this).on('drag dragstart dragend dragover dragenter dragleave', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                })
+                    .on('dragover dragenter', function () {
+                        $(this).addClass('is-dragover');
+                        $(this).find('.custom-dropzone__label').html("<strong>{% trans "Rilascia il o i file per iniziare l'upload!" %}</strong>");
+                    })
+                    .on('dragleave dragend drop', function () {
+                        $(this).removeClass('is-dragover');
+                        $(this).find('.custom-dropzone__label').html(original_label);
+                    });
+            });
+        }
+    });
+</script>
+<div id="dropzone_previewTemplate" style="display:none;">
+    <div class="o-file-preview dz-preview dz-file-preview float-left">
+        <div class="o-file-preview__content dz-details ">
+            <div class="o-file-preview__img">
+                <img class=" dz-details__image" data-dz-thumbnail />
+            </div>
+            <div class="o-file-preview__text dz-filename"><span data-dz-name></span>
+                <div class="dz-size " data-dz-size></div>
+            </div>
+            <div class="o-file-preview__tools">
+                <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                <div class="dz-error-message"></div>
+            </div>
+        </div>
+    </div>
+</div>

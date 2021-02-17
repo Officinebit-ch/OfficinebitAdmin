@@ -1,0 +1,12 @@
+.ck-editor__editable {
+    min-height: 200px;
+}
+.ck.ck-editor {
+    padding-left: 170px !important;
+}
+.inline-group {
+    .ck.ck-editor {
+        padding-left: 0 !important;
+        max-width: 550px;
+    }
+}

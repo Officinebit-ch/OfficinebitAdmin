@@ -1,0 +1,68 @@
+{% load custom_admin_filters i18n %}
+
+<fieldset class="module aligned {{ fieldset.classes }}">
+    {% if fieldset.name %}<h2>{{ fieldset.name }}</h2>{% endif %}
+    {% if fieldset.description %}
+        <div class="description">{{ fieldset.description|safe }}</div>
+    {% endif %}
+    {% for line in fieldset %}
+        <div class="form-row{% if line.fields|length_is:'1' and line.errors %} errors{% endif %}{% if not line.has_visible_field %} hidden{% endif %}{% for field in line %}{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% endfor %}">
+            {% if line.fields|length_is:'1' %}{{ line.errors }}{% endif %}
+            {% for field in line %}
+                <div{% if not line.fields|length_is:'1' %} class="fieldBox{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}{% if field.field.is_hidden %} hidden{% endif %}"{% elif field.is_checkbox %} class="checkbox-row"{% endif %}>
+                    {% if not line.fields|length_is:'1' and not field.is_readonly %}{{ field.errors }}{% endif %}
+                    {% if field.is_checkbox %}
+                        {{ field.field }}{{ field.label_tag }}
+                    {% elif field.field|field_type == 'filefield' or field.field|field_type == 'imagefield' or field.field|field_type == 'imageformfield' %}
+                        {{ field.label_tag }}
+                        {% if not dropzone %}
+                            <button type="submit" value="Salva" class="custom_button" name="_continue">
+                                {% trans "Attiva caricamento media" %}
+                            </button>
+                        {% else %}
+                            {{ field.field }}
+
+                            <div class="custom-dropzone j-dropzone-box" id="{{ field.field.auto_id }}-dropzone">
+                                <div class="custom-dropzone__label label">{% trans "Trascina i file qui o clicca per caricare" %}</div>
+                            </div>
+
+                            <script>
+                                $(function(){
+                                    var myDropzone = new Dropzone("#{{ field.field.auto_id }}-dropzone", {
+                                        url: "{{ dropzone.url }}",
+                                        paramName: "file", // The name that will be used to transfer the file
+                                        maxFilesize: {% if field.field|field_type == 'imagefield' or field.field|field_type == 'imageformfield' %}{{ dropzone.maxImagesize }}{% else %}{{ dropzone.maxFilesize }}{% endif %}, // MB
+                                        maxFiles: 1,
+                                        previewTemplate: $('#dropzone_previewTemplate').html(),
+                                        acceptedFiles: {% if field.field|field_type == 'imagefield' or field.field|field_type == 'imageformfield' %}'{{ dropzone.acceptedImages }}'{% else %}'{{ dropzone.acceptedFiles }}'{% endif %},
+                                        sending: function(file, xhr, formData) {
+                                            formData.append("object_id", '{{ adminform.form.instance.pk }}');
+                                            formData.append("model", '{{ opts.app_label }}.{{ opts.model_name }}');
+                                            formData.append("field_name", '{{ field.field.name }}');
+                                        },
+                                        error: function(file, message) {
+                                            $(file.previewElement).addClass("dz-error").find('.dz-error-message').text("errore");
+                                        },
+                                        complete: function(file) {
+                                            $("#{{ field.field.auto_id }}-dropzone").prev().find('.j-remove_on_update').remove();
+                                        }
+                                    });
+                                });
+                            </script>
+                        {% endif %}
+                    {% else %}
+                        {{ field.label_tag }}
+                        {% if field.is_readonly %}
+                            <div class="readonly">{{ field.contents }}</div>
+                        {% else %}
+                            {{ field.field }}
+                        {% endif %}
+                    {% endif %}
+                    {% if field.field.help_text %}
+                        <div class="help">{{ field.field.help_text|safe }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</fieldset>

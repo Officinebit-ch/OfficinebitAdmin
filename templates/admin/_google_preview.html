@@ -1,0 +1,118 @@
+<style>
+    .clearfix:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
+    .clearfix { display: inline-block; }
+
+    .desktop { width: 100%;}
+    .mobile { background-color: #fafafa; width: 362px; margin-top:40px; padding: 20px; }
+    .mobile .results { width: 330px; margin-bottom: 10px; padding: 22px 14px; background-color: #fff; border: 1px solid #f3f3f3; -webkit-border-radius: 2px; -moz-border-radius: 2px; -ms-border-radius: 2px; -o-border-radius: 2px; border-radius: 2px; overflow: hidden; }
+
+    .tool-header { width: 100%; position:relative; display:block; margin-bottom: 20px; }
+    .tool-header .tool-header-logo { position: relative; float: left; }
+    .tool-header .tool-header-search { position: relative; float: right; }
+
+    .tool-search-results { width: 100%; position:relative; display:block; }
+    .tool-search-results .container p { maring:0; padding: 0;}
+    .tool-search-results .container {width: 520px; margin-left: 100px; position:relative; display:block; }
+    .tool-search-results .line-top { width: 58%; height: 10px; margin-bottom: 30px; margin-top: 30px; background-color: #e2e3e5; }
+    .tool-search-results .title { margin-bottom: 4px; font-size: 18px; color: #1e0fbe; }
+    .tool-search-results .site { margin-bottom: 4px; font-size: 13px; color: #00802a; }
+    .tool-search-results .description { font-size: 13px; color: #545454; }
+    .tool-search-results .line-1 { width: 64%; height: 13px; margin-top: 35px; margin-bottom: 8px; background-color: #c6dafc; }
+    .mobile .tool-search-results .line-1 { margin-top: 0px; }
+    .tool-search-results .line-2 { width: 48%; height: 10px; margin-bottom: 8px; background-color: #c2e5cb; }
+    .tool-search-results .line-3 { width: 80%; height: 10px; margin-bottom: 8px; background-color: #e2e3e5; }
+    .tool-search-results .line-4 { width: 46%; height: 10px; margin-bottom: 20px; background-color: #e2e3e5; }
+    .mobile .tool-search-results .line-4 { margin-bottom: 0px; }
+
+</style>
+<div class="google_preview">
+    <div class="desktop">
+        <div class="tool-header clearfix">
+            <div class="tool-header-logo">
+                <img style="height:40px" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" />
+            </div>
+            <div class="tool-header-search">
+                <p>Desktop View</p>
+            </div>
+        </div>
+        <div class="tool-search-results">
+            <div class="container">
+                <div class="line-top"></div>
+                <div class="results">
+                    <p class="title"></p>
+                    <p class="site"></p>
+                    <p class="description"></p>
+                </div>
+                <div class="line-1"></div>
+                <div class="line-2"></div>
+                <div class="line-3"></div>
+                <div class="line-4"></div>
+            </div>
+        </div>
+    </div>
+    <hr style="margin-top:40px;" />
+    <div class="mobile">
+        <div class="tool-header clearfix">
+            <div class="tool-header-logo">
+                <img style="height:40px" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" />
+            </div>
+            <div class="tool-header-search">
+                <p>Mobile View</p>
+            </div>
+        </div>
+        <div class="tool-search-results">
+            <div class="results">
+                <p class="title"></p>
+                <p class="site"></p>
+                <p class="description"></p>
+            </div>
+            <div class="results">
+                <div class="line-1"></div>
+                <div class="line-2"></div>
+                <div class="line-3"></div>
+                <div class="line-4"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function(){
+        function refresh_site() {
+            $('.google_preview .site').each(function(){
+                $(this).html("https://"+window.location.hostname+"/.../"+$('#id_slug').val());
+            });
+        }
+        function refresh_title() {
+            $('.google_preview .title').each(function(){
+                $(this).html($('#id_seo_title').val());
+            });
+        }
+        function refresh_description() {
+            var str = $('#id_seo_description').val();
+
+            var keywords = $('#id_seo_kwywords').val().split(",");
+            keywords.forEach(function(element) {
+                str = str.replace(element.trim(), "<strong>"+element+"</strong>");
+            });
+
+            $('.google_preview .description').each(function(){
+                $(this).html(str);
+            });
+        }
+        $('#id_seo_title').keyup(function(){
+            refresh_title();
+        });
+        $('#id_seo_description').keyup(function(){
+            refresh_description();
+        });
+        $('#id_seo_kwywords').keyup(function(){
+            refresh_description();
+        });
+        $('#id_slug').keyup(function(){
+            refresh_site();
+        });
+        refresh_title();
+        refresh_description();
+        refresh_site();
+    });
+</script>
