@@ -2,6 +2,8 @@
 
 <script src="{% static 'admin/plugins/dropzone-5.7.0/dist/min/dropzone.min.js' %}"></script>
 <script>
+    Dropzone.autoDiscover = false;
+    
     $(function(){
         var isAdvancedUpload = function() {
             var div = document.createElement('div');

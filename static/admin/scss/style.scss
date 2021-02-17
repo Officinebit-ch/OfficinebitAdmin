@@ -66,12 +66,12 @@ div.breadcrumbs {
 #nav-sidebar .current-app .section:link, #nav-sidebar .current-app .section:visited {
     color: $officine-red;
 }
-.vTextField, .vUUIDField {
-    width: calc(100% - 185px);
+.vTextField, .vUUIDField, input[type=text] {
+    min-width: 300px;
 }
 .inline-related {
     .vTextField, .vUUIDField {
-        width: 100%;
+        min-width: 300px;
     }
     select {
         min-width: 50px;

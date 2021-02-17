@@ -1,4 +1,5 @@
 from django.contrib.admin import ModelAdmin
+from django.contrib.admin.options import InlineModelAdmin
 from django.db.models import TextField
 from django.forms import Textarea
 from django.urls import reverse, path
@@ -25,8 +26,7 @@ class OfficinebitAdminSite(admin.AdminSite):
 officinebit_admin_site = OfficinebitAdminSite(name="offadmin")
 #officinebit_admin_site.register(CkEditorImage, admin.ModelAdmin)
 
-
-class AdminDropzoneTabularInline(admin.TabularInline):
+class AdminDropzoneInline(InlineModelAdmin):
     extra = 0
     max_num = 0
 
@@ -54,6 +54,15 @@ class AdminDropzoneTabularInline(admin.TabularInline):
         models.FileField: {'widget': DropzoneClearableFileInput},
         TextField: {'widget': Textarea(attrs={'class': 'custom_ckeditor'})}
     }
+
+class AdminDropzoneTabularInline(AdminDropzoneInline):
+    template = 'admin/edit_inline/tabular.html'
+
+class AdminDropzoneStackedInline(AdminDropzoneInline):
+    template = 'admin/edit_inline/stacked.html'
+    dropzone = True
+    
+
 
 class AdminDropzone(admin.ModelAdmin):
     dropzone_form_url = None
@@ -85,6 +94,11 @@ class AdminDropzone(admin.ModelAdmin):
 
 
 class CKEditor5(ModelAdmin):
+    formfield_overrides = {
+        TextField: {'widget': Textarea(attrs={'class': 'custom_ckeditor'})}
+    }
+
+class CKEditor5Inline(InlineModelAdmin):
     formfield_overrides = {
         TextField: {'widget': Textarea(attrs={'class': 'custom_ckeditor'})}
     }
