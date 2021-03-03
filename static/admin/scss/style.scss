@@ -118,11 +118,13 @@ select {
         margin: 0 10px 0 0;
     }
 }
-.submit-row {
-    position: fixed;
-    bottom: 0;
-    right: 40px;
-}
-#content-main {
-    padding-bottom: 50px !important;
+form:not(#login-form) {
+    .submit-row {
+        position: fixed;
+        bottom: 0;
+        right: 40px;
+    }
+    #content-main {
+        padding-bottom: 50px !important;
+    }
 }
