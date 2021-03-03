@@ -11,8 +11,8 @@ class SEOModel(models.Model):
     seo_description = models.CharField(_("Descrizione SEO"), help_text=_("Massimo 160 caratteri"), max_length=160, blank=True, null=True)
     seo_kwywords = models.CharField(_("Parole chiave SEO"), help_text=_("Parole chiave separate da una virgola"), max_length=255, blank=True, null=True)
     seo_author = models.CharField(_("Autore SEO"), help_text=_("Autore"), max_length=255, blank=True, null=True)
-    seo_noindex = models.BooleanField(_("NOINDEX SEO"), default=0)
-    seo_nofollow = models.BooleanField(_("NOFOLLOW SEO"), default=0)
+    seo_noindex = models.BooleanField(_("NOINDEX SEO"), default=False)
+    seo_nofollow = models.BooleanField(_("NOFOLLOW SEO"), default=False)
 
     og_type = models.CharField(_("Tipo OG"), help_text=_("Tipo OG. Es.: article, book, ..."), max_length=255, default='article')
     og_title = models.CharField(_("Titolo OG"), help_text=_("Titolo OG"), max_length=255, blank=True, null=True)

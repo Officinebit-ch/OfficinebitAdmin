@@ -27,7 +27,7 @@
     }
 }
 #header {
-    background: $officine-red;
+    background: $default-color;
     color: white;
 }
 branding h1, #branding h1 a:link,
@@ -35,7 +35,7 @@ branding h1, #branding h1 a:link,
     color: white;
 }
 .module h2, .module caption, .inline-group h2 {
-    background: #757575;
+    background: #cacaca;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
@@ -45,34 +45,36 @@ a:link, a:visited {
 }
 a:hover, a:active,
 div.breadcrumbs a:focus, div.breadcrumbs a:hover {
-    color: $officine-red;
+    color: $default-color;
 }
 .object-tools a:focus, .object-tools a:hover {
     color: white;
-    background-color: $officine-red;
+    background-color: $default-color;
 }
 div.breadcrumbs {
-    background: #ffabab3b;
+    background: #abc1ff3b;
     color: black;
-    border-bottom: solid 1px $officine-red;
+    border-bottom: solid 1px $default-color;
 
     a {
         color: gray;
     }
 }
 #nav-sidebar .current-model {
-    background: #8700003d;
+    background: #abc1ff3b;
 }
 #nav-sidebar .current-app .section:link, #nav-sidebar .current-app .section:visited {
-    color: $officine-red;
+    color: $default-color;
 }
-.vTextField, .vUUIDField, input[type=text] {
-    min-width: 300px;
+.vTextField, 
+.vUUIDField,
+input[type=text] {
+    width: calc(100% - 185px);
+}
+.vDateField {
+    width: auto !important;
 }
 .inline-related {
-    .vTextField, .vUUIDField {
-        min-width: 300px;
-    }
     select {
         min-width: 50px;
     }
@@ -91,7 +93,7 @@ select {
     background-color: gray;
 }
 .button.default, input[type=submit].default, .submit-row input.default {
-    background-color: $officine-red;
+    background-color: $default-color;
 }
 .button:active, input[type=submit]:active, input[type=button]:active, .button:focus, input[type=submit]:focus, input[type=button]:focus, .button:hover, input[type=submit]:hover, input[type=button]:hover {
     background-color: silver;
@@ -101,12 +103,26 @@ select {
 }
 .custom_button {
     display: block;
-    background: #ba2121;
+    background: $default-color;
     border-radius: 4px;
-    padding: 15px;
-    height: 15px;
-    line-height: 2px;
+    padding: 10px 15px;
+    line-height: 24px;
     color: #fff;
     border: none;
     cursor: pointer;
+
+    svg {
+        height: 20px;
+        position: relative;
+        top: 4px;
+        margin: 0 10px 0 0;
+    }
+}
+.submit-row {
+    position: fixed;
+    bottom: 0;
+    right: 40px;
+}
+#content-main {
+    padding-bottom: 50px !important;
 }
