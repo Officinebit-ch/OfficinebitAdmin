@@ -4,215 +4,131 @@
 <script src="{% static 'admin/plugins/ckeditor5/build/ckeditor.js' %}"></script>
 
 <script>
-
-    const custom_colors = [
-        {
-            color: 'hsl(0, 0%, 0%)',
-            label: 'Black'
-        },
-        {
-            color: 'hsl(0, 0%, 30%)',
-            label: 'Dim grey'
-        },
-        {
-            color: 'hsl(0, 0%, 60%)',
-            label: 'Grey'
-        },
-        {
-            color: 'hsl(0, 0%, 90%)',
-            label: 'Light grey'
-        },
-        {
-            color: 'hsl(0, 0%, 100%)',
-            label: 'White',
-            hasBorder: true
-        },
-        {
-            color: 'hsl(0, 75%, 60%)',
-            label: 'Red'
-        },
-        {
-            color: 'hsl(30, 75%, 60%)',
-            label: 'Orange'
-        },
-        {
-            color: 'hsl(60, 75%, 60%)',
-            label: 'Yellow'
-        },
-        {
-            color: 'hsl(90, 75%, 60%)',
-            label: 'Light green'
-        },
-        {
-            color: 'hsl(120, 75%, 60%)',
-            label: 'Green'
-        },
-        {
-            color: 'hsl(150, 75%, 60%)',
-            label: 'Aquamarine'
-        },
-        {
-            color: 'hsl(180, 75%, 60%)',
-            label: 'Turquoise'
-        },
-        {
-            color: 'hsl(210, 75%, 60%)',
-            label: 'Light blue'
-        },
-        {
-            color: 'hsl(240, 75%, 60%)',
-            label: 'Blue'
-        },
-        {
-            color: '#000099',
-            label: 'Blue BRANDFORUM'
-        },
-        {
-            color: 'hsl(270, 75%, 60%)',
-            label: 'Purple'
-        }
-    ];
-    var ckeditor_config = {
-        toolbar: {
-            items: [
-                'htmlEmbed',
-                '|',
-                'heading',
-                '|',
-                'removeFormat',
-                '|',
-                'fontBackgroundColor',
-                'fontColor',
-                'bold',
-                'underline',
-                'italic',
-                'strikethrough',
-                'specialCharacters',
-                'link',
-                'subscript',
-                'superscript',
-                'bulletedList',
-                'numberedList',
-                '|',
-                'fontSize',
-                'fontFamily',
-                'alignment',
-                'indent',
-                'outdent',
-                '|',
-                'imageInsert',
-                'blockQuote',
-                'insertTable',
-                'mediaEmbed',
-                'undo',
-                'redo',
-                '|',
-                'code',
-                'horizontalLine'
-            ]
-        },
-        language: 'it',
-        image: {
-            styles: [
-                'alignLeft', 'alignCenter', 'alignRight'
-            ],
-
-            // Configure the available image resize options.
-            resizeOptions: [
-                {
-                    name: 'imageResize:original',
-                    label: 'Original',
-                    value: null
-                },
-                {
-                    name: 'imageResize:50',
-                    label: '50%',
-                    value: '50'
-                },
-                {
-                    name: 'imageResize:75',
-                    label: '75%',
-                    value: '75'
-                }
-            ],
-
-            // You need to configure the image toolbar, too, so it shows the new style
-            // buttons as well as the resize buttons.
-            toolbar: [
-                'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight',
-                '|',
-                'imageResize',
-                '|',
-                'imageTextAlternative'
-            ]
-        },
-        table: {
-            contentToolbar: [
-                'tableColumn',
-                'tableRow',
-                'mergeTableCells',
-                'tableCellProperties',
-                'tableProperties'
-            ]
-        },
-        fontColor: {
-            columns: 5,
-            documentColors: 0,
-            colors: custom_colors
-        },
-        fontBackgroundColor: {
-            columns: 5,
-            documentColors: 0,
-            colors: custom_colors
-        },
-        //licenseKey: '',
-        simpleUpload: {
-            uploadUrl: '{% url "offadmin:ckeditor-image-upload" %}',
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRFToken': '{{ csrf_token }}',
+    $(function(){
+        var ckeditor_config = {
+            fontSize: {
+                options: [
+                    12,
+                    14,
+                    16,
+                    18,
+                    'default'
+                ]
             },
-        },
-        link: {
-            decorators: {
-                openInNewTab: {
-                    mode: 'manual',
-                    label: 'Open in a new tab',
-                    attributes: {
-                        target: '_blank',
-                        rel: 'noopener noreferrer'
+            toolbar: {
+                items: [
+                    'htmlEmbed',
+                    '|',
+                    'heading',
+                    '|',
+                    'removeFormat',
+                    '|',
+                    //'fontBackgroundColor',
+                    'fontColor',
+                    'bold',
+                    'underline',
+                    'italic',
+                    'strikethrough',
+                    'specialCharacters',
+                    'link',
+                    //'subscript',
+                    'superscript',
+                    'bulletedList',
+                    'numberedList',
+                    '|',
+                    'fontSize',
+                    //'fontFamily',
+                    'alignment',
+                    //'indent',
+                    //'outdent',
+                    '|',
+                    'imageInsert',
+                    'blockQuote',
+                    'insertTable',
+                    'mediaEmbed',
+                    'undo',
+                    'redo',
+                    '|',
+                    'code',
+                    'horizontalLine'
+                ]
+            },
+            language: 'it',
+            image: {
+                styles: [
+                    'alignLeft', 'alignCenter', 'alignRight'
+                ],
+
+                // Configure the available image resize options.
+                resizeOptions: [
+                    {
+                        name: 'imageResize:original',
+                        label: 'Original',
+                        value: null
+                    },
+                    {
+                        name: 'imageResize:50',
+                        label: '50%',
+                        value: '50'
+                    },
+                    {
+                        name: 'imageResize:75',
+                        label: '75%',
+                        value: '75'
+                    }
+                ],
+
+                // You need to configure the image toolbar, too, so it shows the new style
+                // buttons as well as the resize buttons.
+                toolbar: [
+                    'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight',
+                    '|',
+                    'imageResize',
+                    '|',
+                    'imageTextAlternative'
+                ]
+            },
+            table: {
+                contentToolbar: [
+                    'tableColumn',
+                    'tableRow',
+                    'mergeTableCells',
+                    'tableCellProperties',
+                    'tableProperties'
+                ]
+            },
+            //licenseKey: '',
+            simpleUpload: {
+                uploadUrl: '{% url "offadmin:ckeditor-image-upload" %}',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': '{{ csrf_token }}',
+                },
+            },
+            link: {
+                decorators: {
+                    openInNewTab: {
+                        mode: 'manual',
+                        label: 'Open in a new tab',
+                        attributes: {
+                            target: '_blank',
+                            rel: 'noopener noreferrer'
+                        }
                     }
                 }
             }
-        }
-    };
+        };
 
-    $(function(){
-        $(':not(.empty-form) .custom_ckeditor').each(function(){
+        $('.custom_ckeditor').each(function(){
             ClassicEditor
-            .create( this, ckeditor_config)
-            .then( editor => {
-                window.editor = editor;
-            } )
-            .catch( error => {
-                console.log( error );
-            } );
-        });
-    });
-
-    function reinit_ckeditor(element) {
-        $(element).find('.ck-editor').remove();
-        $(element).find('.custom_ckeditor').each(function(){
-            ClassicEditor
-                .create( this, ckeditor_config)
+                .create(this, ckeditor_config)
                 .then( editor => {
                     window.editor = editor;
                 } )
                 .catch( error => {
                     console.log( error );
-                } );
+                });
         });
-    }
-
+    });
 </script>
 <!-- End custom scripts for customizing admin form -->
