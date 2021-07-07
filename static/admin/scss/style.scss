@@ -71,6 +71,13 @@ div.breadcrumbs {
 input[type=text] {
     width: calc(100% - 185px);
 }
+.tabular.inline-related {
+    .vTextField,
+    .vUUIDField,
+    input[type=text] {
+        width: calc(100% - 20px);
+    }
+}
 .vDateField {
     width: auto !important;
 }
