@@ -2,6 +2,7 @@ from django.db import models
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
+from imagekit.models import ImageSpecField
 from pilkit.processors import ResizeToFit, ResizeToFill
 from django.conf import settings
 from utils.models import ContentTypeRestrictedFileField
@@ -38,6 +39,21 @@ class CkEditorImage(models.Model):
                 content_types=settings.IMAGE_CONTENT_TYPES,
                 max_upload_size=settings.IMAGE_MAX_UPLOAD_SIZE,
                 null=True, blank=True, verbose_name=_('immagine'))
+
+    im_600 = ImageSpecField(source='image',
+                                 processors=[ResizeToFit(600, None)],
+                                 options={'quality': 100})
+    im_800 = ImageSpecField(source='image',
+                                 processors=[ResizeToFit(800, None)],
+                                 options={'quality': 100})
+    im_1024 = ImageSpecField(source='image',
+                                 processors=[ResizeToFit(1024, None)],
+                                 options={'quality': 100})
+    im_1920 = ImageSpecField(source='image',
+                                 processors=[ResizeToFit(1920, None)],
+                                 options={'quality': 100})
+
+
     created = models.DateTimeField(_("Creato"), auto_now_add=True)
     modified = models.DateTimeField(_("Modificato"), auto_now=True)
 

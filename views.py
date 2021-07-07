@@ -4,7 +4,6 @@ from django.utils.decorators import method_decorator
 from django.utils.translation import get_language
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
-from sorl.thumbnail import get_thumbnail
 
 from .forms import DropzoneImageUploadForm, CKEditorImageUploadForm
 from .models import CkEditorImage
@@ -83,18 +82,13 @@ class CkeditorImageUpload(View):
             instance.image = form.cleaned_data['upload']
             instance.save()
 
-            im_600 = get_thumbnail(instance.image, '600', crop='center', quality=100)
-            im_800 = get_thumbnail(instance.image, '800', crop='center', quality=100)
-            im_1024 = get_thumbnail(instance.image, '1024', crop='center', quality=100)
-            im_1920 = get_thumbnail(instance.image, '1920', crop='center', quality=100)
-
             return JsonResponse({
                 "urls": {
                     "default": "{}".format(instance.image.url),
-                    "600": "{}".format(im_600.url),
-                    "800": "{}".format(im_800.url),
-                    "1024": "{}".format(im_1024.url),
-                    "1920": "{}".format(im_1920.url),
+                    "600": "{}".format(instance.im_600.url),
+                    "800": "{}".format(instance.im_800.url),
+                    "1024": "{}".format(instance.im_1024.url),
+                    "1920": "{}".format(instance.im_1920.url),
                 }
             })
         else:
