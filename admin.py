@@ -20,7 +20,7 @@ class OfficinebitAdminSite(admin.AdminSite):
             path('dropzone/multiple_upload/', self.admin_view(DropzoneUploadMultiple.as_view()), name="dropzone-multipleupload"),
             path('ckeditor/image_upload/', self.admin_view(CkeditorImageUpload.as_view()), name="ckeditor-image-upload")
         ]
-        return urls + custom_urls
+        return custom_urls + urls
 
 
 officinebit_admin_site = OfficinebitAdminSite(name="offadmin")
