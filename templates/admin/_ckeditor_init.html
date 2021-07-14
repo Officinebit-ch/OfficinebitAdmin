@@ -119,16 +119,32 @@
             }
         };
 
-        $('.custom_ckeditor').each(function(){
-            ClassicEditor
-                .create(this, ckeditor_config)
-                .then( editor => {
-                    window.editor = editor;
-                } )
-                .catch( error => {
-                    console.log( error );
-                });
+        $(function(){
+            $(':not(.empty-form) .custom_ckeditor').each(function(){
+                ClassicEditor
+                    .create( this, ckeditor_config)
+                    .then( editor => {
+                        window.editor = editor;
+                    } )
+                    .catch( error => {
+                        console.log( error );
+                    } );
+            });
         });
+
+        function reinit_ckeditor(element) {
+            $(element).find('.ck-editor').remove();
+            $(element).find('.custom_ckeditor').each(function(){
+                ClassicEditor
+                    .create( this, ckeditor_config)
+                    .then( editor => {
+                        window.editor = editor;
+                    } )
+                    .catch( error => {
+                        console.log( error );
+                    } );
+            });
+        }
     });
 </script>
 <!-- End custom scripts for customizing admin form -->

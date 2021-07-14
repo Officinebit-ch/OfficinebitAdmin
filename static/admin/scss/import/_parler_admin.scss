@@ -1,0 +1,9 @@
+.parler-language-tabs span.current {
+    border-bottom: 1px solid #fff;
+    background-color: $default-color;
+    border-color: $default-color;
+    color: #fff;
+}
+.parler-language-tabs {
+    border-bottom: 2px solid $default-color;
+}

@@ -5,6 +5,7 @@
   min-width: 150px;
   min-width: 150px;
   overflow: auto;
+  cursor: pointer;
 }
 .custom-dropzone.has-advanced-upload {
   display: block;
@@ -380,6 +381,17 @@
 
 .inline-group .ck.ck-editor {
   padding-left: 0 !important;
+}
+
+.parler-language-tabs span.current {
+  border-bottom: 1px solid #fff;
+  background-color: #3466de;
+  border-color: #3466de;
+  color: #fff;
+}
+
+.parler-language-tabs {
+  border-bottom: 2px solid #3466de;
 }
 
 .box {
