@@ -7,7 +7,7 @@
         {{ inline_admin_formset.formset.management_form }}
         {{ inline_admin_formset.formset.non_form_errors }}
 
-        {% if inline_admin_formset.opts.dropzone_top %}
+        {% if inline_admin_formset.opts.dropzone_top and adminform.form.instance.pk %}
             <div class="custom-dropzone j-dropzone-box" id="{{ inline_admin_formset.formset.prefix }}-dropzone"
                  style="margin: 10px 0;">
                 <div class="custom-dropzone__label label">{% trans "Trascina i file qui o clicca per caricare" %}</div>
