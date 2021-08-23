@@ -1,5 +1,7 @@
 from django.contrib.admin import ModelAdmin
 from django.contrib.admin.options import InlineModelAdmin
+from django.contrib.auth.admin import UserAdmin, GroupAdmin
+from django.contrib.auth.models import User, Group
 from django.db.models import TextField
 from django.forms import Textarea
 from django.urls import reverse, path
@@ -25,6 +27,9 @@ class OfficinebitAdminSite(admin.AdminSite):
 
 officinebit_admin_site = OfficinebitAdminSite(name="offadmin")
 #officinebit_admin_site.register(CkEditorImage, admin.ModelAdmin)
+
+officinebit_admin_site.register(User, UserAdmin)
+officinebit_admin_site.register(Group, GroupAdmin)
 
 class AdminDropzoneInline(InlineModelAdmin):
     extra = 0
