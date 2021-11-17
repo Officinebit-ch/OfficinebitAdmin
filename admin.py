@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.admin import ModelAdmin
 from django.contrib.admin.options import InlineModelAdmin
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
@@ -23,6 +24,12 @@ class OfficinebitAdminSite(admin.AdminSite):
             path('ckeditor/image_upload/', self.admin_view(CkeditorImageUpload.as_view()), name="ckeditor-image-upload")
         ]
         return custom_urls + urls
+
+    def get_app_list(self, request):
+        ordering = settings.ADMIN_MODEL_ORDER
+        app_dict = self._build_app_dict(request)
+        app_list = sorted(app_dict.values(), key=lambda x: ordering[x['name'].lower()] if x['name'].lower() in ordering else 100)
+        return app_list
 
 
 officinebit_admin_site = OfficinebitAdminSite(name="offadmin")
