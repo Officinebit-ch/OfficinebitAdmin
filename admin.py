@@ -26,7 +26,10 @@ class OfficinebitAdminSite(admin.AdminSite):
         return custom_urls + urls
 
     def get_app_list(self, request):
-        ordering = settings.ADMIN_MODEL_ORDER
+        try:
+            ordering = settings.ADMIN_MODEL_ORDER
+        except:
+            ordering = {}
         app_dict = self._build_app_dict(request)
         app_list = sorted(app_dict.values(), key=lambda x: ordering[x['name'].lower()] if x['name'].lower() in ordering else 100)
         return app_list
