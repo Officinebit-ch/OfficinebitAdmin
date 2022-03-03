@@ -90,7 +90,7 @@
         function refresh_description() {
             var str = $('#id_seo_description').val();
 
-            var keywords = $('#id_seo_kwywords').val().split(",");
+            var keywords = $('#id_seo_keywords').val().split(",");
             keywords.forEach(function(element) {
                 str = str.replace(element.trim(), "<strong>"+element+"</strong>");
             });
@@ -105,7 +105,7 @@
         $('#id_seo_description').keyup(function(){
             refresh_description();
         });
-        $('#id_seo_kwywords').keyup(function(){
+        $('#id_seo_keywords').keyup(function(){
             refresh_description();
         });
         $('#id_slug').keyup(function(){

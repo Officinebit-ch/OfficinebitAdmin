@@ -1,7 +1,7 @@
 from django.db import models
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from imagekit.models import ImageSpecField
 from pilkit.processors import ResizeToFit, ResizeToFill
 from django.conf import settings
@@ -10,7 +10,7 @@ from utils.models import ContentTypeRestrictedFileField
 class SEOModel(models.Model):
     seo_title = models.CharField(_("Titolo SEO"), help_text=_("Massimo 65 caratteri"), max_length=65, blank=True, null=True)
     seo_description = models.CharField(_("Descrizione SEO"), help_text=_("Massimo 160 caratteri"), max_length=160, blank=True, null=True)
-    seo_kwywords = models.CharField(_("Parole chiave SEO"), help_text=_("Parole chiave separate da una virgola"), max_length=255, blank=True, null=True)
+    seo_keywords = models.CharField(_("Parole chiave SEO"), help_text=_("Parole chiave separate da una virgola"), max_length=255, blank=True, null=True)
     seo_author = models.CharField(_("Autore SEO"), help_text=_("Autore"), max_length=255, blank=True, null=True)
     seo_noindex = models.BooleanField(_("NOINDEX SEO"), default=False)
     seo_nofollow = models.BooleanField(_("NOFOLLOW SEO"), default=False)
