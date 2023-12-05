@@ -25,7 +25,7 @@ class OfficinebitAdminSite(admin.AdminSite):
         ]
         return custom_urls + urls
 
-    def get_app_list(self, request):
+    def get_app_list(self, request, app_label=None):
         try:
             ordering = settings.ADMIN_MODEL_ORDER
         except:
