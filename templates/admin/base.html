@@ -114,9 +114,9 @@
                                 {% endif %}
                             {% endif %}
                             {% if user.has_usable_password %}
-                                <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a> /
+                                <a href="{% url 'offadmin:password_change' %}">{% trans 'Change password' %}</a> /
                             {% endif %}
-                            <a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a>
+                            <form method="post" action="{% url 'offadmin:logout' %}" style="display:inline">{% csrf_token %}<button type="submit" style="background:none;border:none;padding:0;color:inherit;cursor:pointer;font:inherit">{% trans 'Log out' %}</button></form>
                         {% endblock %}
                     </div>
                 {% endif %}
@@ -126,7 +126,7 @@
         <!-- END Header -->
         {% block breadcrumbs %}
             <div class="breadcrumbs">
-                <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+                <a href="{% url 'offadmin:index' %}">{% trans 'Home' %}</a>
                 {% if title %} &rsaquo; {{ title }}{% endif %}
             </div>
         {% endblock %}
